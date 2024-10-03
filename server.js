@@ -4,11 +4,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const apiRoutes = require('./routes/api'); // Importation du fichier de routes
+require('dotenv').config(); // Pour charger les variables d'environnement
 
 const app = express();
 
 // Connexion à MongoDB
-mongoose.connect('mongodb://localhost:27017/cost_calculator', {
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cost_calculator';
+mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -22,6 +24,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Utilisation des routes API
 app.use('/api', apiRoutes);
+
+// Gestion des erreurs 404 (routes non trouvées)
+app.use((req, res, next) => {
+  res.status(404).send('Route non trouvée');
+});
+
+// Gestion globale des erreurs
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Erreur serveur');
+});
 
 // Démarrage du serveur
 const port = process.env.PORT || 3000;
