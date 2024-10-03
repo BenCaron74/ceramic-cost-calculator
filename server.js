@@ -8,15 +8,15 @@ const apiRoutes = require('./routes/api'); // Importation du fichier de routes
 
 const app = express();
 
-// Connexion à MongoDB
-const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cost_calculator';
-mongoose.connect(dbURI, {
+/// Connexion à MongoDB
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
-  serverSelectionTimeoutMS: 30000,  // 30 secondes de délai d'attente
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000  // 30 secondes de délai d'attente
 })
   .then(() => console.log('MongoDB connecté'))
   .catch(err => console.log('Erreur de connexion MongoDB :', err));
+
 
 // Middleware
 app.use(cors());
