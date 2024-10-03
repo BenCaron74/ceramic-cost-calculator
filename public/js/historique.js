@@ -14,7 +14,7 @@ function showTab(tabName) {
 // Fonction pour charger les calculs
 async function loadCalculations() {
     try {
-        const response = await fetch('http://localhost:3000/api/calculations'); // Assurez-vous que l'URL est correcte
+        const response = await fetch('/api/calculations'); // Utilisez une URL relative
         if (!response.ok) {
             throw new Error('Erreur lors de la récupération des calculs');
         }
@@ -24,50 +24,30 @@ async function loadCalculations() {
         historyList.innerHTML = ''; // Vider la liste avant de recharger
 
         calculations.reverse().forEach(calculation => {
-            // Vérifiez que les propriétés existent
-            const { name, totalCost, unitCost, _id } = calculation;
-            if (name && totalCost != null && unitCost != null) {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `
-                    <strong>${name}</strong><br>
-                    Coût total : ${totalCost.toFixed(2)} €<br>
-                    Coût unitaire : ${unitCost.toFixed(2)} €<br>
-                    <button onclick="deleteCalculation('${_id}')">Supprimer</button>
-                `;
-                historyList.appendChild(listItem);
-            } else {
-                console.error('Calcul manquant des données nécessaires:', calculation);
-            }
+            const li = document.createElement('li');
+            li.textContent = `${calculation.name} - Coût total : ${calculation.totalCost} € - Coût par unité : ${calculation.unitCost} € - Taille du lot : ${calculation.lotSize}`;
+            historyList.appendChild(li);
         });
     } catch (error) {
-        console.error('Erreur lors de la récupération des calculs :', error);
-        alert('Erreur lors de la récupération des calculs.');
+        console.error('Erreur :', error);
+        alert('Erreur lors du chargement de l\'historique des calculs. Veuillez réessayer.');
     }
 }
 
-// Suppression des calculs
-async function deleteCalculation(id) {
-    console.log('ID à supprimer :', id); // Ajout du log
+// Fonction pour supprimer un calcul par ID
+async function deleteCalculation(calculationId) {
     try {
-        const response = await fetch(`http://localhost:3000/api/calculation/${id}`, {
-            method: 'DELETE'
-        });
-
-        if (response.ok) {
-            alert('Calcul supprimé avec succès');
-            loadCalculations(); // Recharger la liste après suppression
-        } else {
-            const errorText = await response.text(); // Log des erreurs détaillées
-            alert(`Erreur lors de la suppression du calcul : ${errorText}`);
-            console.error('Erreur :', errorText);
+        const response = await fetch(`/api/calculation/${calculationId}`, { method: 'DELETE' });
+        if (!response.ok) {
+            throw new Error('Erreur lors de la suppression du calcul');
         }
+        alert('Calcul supprimé avec succès');
+        loadCalculations(); // Recharger la liste après suppression
     } catch (error) {
-        console.error('Erreur lors de la suppression du calcul :', error);
-        alert('Erreur lors de la suppression du calcul.');
+        console.error('Erreur :', error);
+        alert('Erreur lors de la suppression. Veuillez réessayer.');
     }
 }
 
-// Charger les matières premières et les calculs à l'ouverture
-document.addEventListener('DOMContentLoaded', () => {
-    loadCalculations();
-});
+// Charger les calculs au chargement de la page
+document.addEventListener('DOMContentLoaded', loadCalculations);
