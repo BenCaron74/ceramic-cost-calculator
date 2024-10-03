@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des matières premières</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Gestion des matières premières</h1>
+  </header>
+
+  <main>
+    <section id="materialListSection">
+      <h2>Liste des matières premières</h2>
+      <ul id="materialList"></ul>
+    </section>
+
+    <section id="addMaterialSection">
+      <h2>Ajouter des matières premières</h2>
+      <form id="addMaterialForm">
+        <label for="materialName">Nom :</label>
+        <input type="text" id="materialName" required>
+
+        <label for="pricePer10Kg">Prix (€/10kg) :</label>
+        <input type="number" id="pricePer10Kg" required>
+
+        <button type="submit">Ajouter</button>
+      </form>
+    </section>
+
+    <a href="index.html" class="btn">Retour au calculateur de coût</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 - Gestion des matières premières</p>
+  </footer>
+
+  <script src="js/inventory.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculateur de Coût de Revient</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Calculateur de Coût de Revient</h1>
+    <nav>
+      <button id="showCalculator">Calculateur</button>
+      <a href="historique.html"><button id="GoToHistorique" class="btn">Historique</button></a>
+
+      <a href="inventory.html"><button id="goToInventory" class="btn">Gestion des matières premières</button></a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="calculatorSection">
+      <form id="calculationForm">
+        <label for="ceramicName">Nom de la céramique :</label>
+        <input type="text" id="ceramicName" placeholder="Ex: Mug Bla Bla" required>
+
+        <label for="materialSelect">Sélectionner une matière première :</label>
+        <select id="materialSelect" required>
+          <option value="">Sélectionner une matière première</option>
+        </select>
+    
+        <label for="materialQuantity">Quantité de matière utilisée :</label>
+        <input type="number" id="materialQuantity" placeholder="Ex: 200" required>
+        
+        <label for="unit">Unité :</label>
+        <select id="unit">
+          <option value="g">grammes (g)</option>
+          <option value="kg">kilos (kg)</option>
+        </select>
+
+
+        <label for="laborHours">Temps passé (heures) :</label>
+<input type="number" id="laborHours" placeholder="Ex: 2.5" required step="0.1" min="0">
+
+
+        <label for="laborRate">Taux horaire (€) :</label>
+        <input type="number" id="laborRate" placeholder="Ex: 15" required>
+        
+        <label for="firingCost">Coût total de la cuisson (€) :</label>
+        <input type="number" id="firingCost" placeholder="Ex: 15" required>
+    
+        <label for="piecesPerFiring">Nombre de pièces mises en cuisson :</label>
+        <input type="number" id="piecesPerFiring" placeholder="Ex: 50" required>
+    
+        <button type="submit" class="btn">Calculer et enregistrer</button>
+      </form>
+    </section>
+
+    <section id="historySection" style="display:none;">
+      <h2>Historique des calculs</h2>
+      <div id="calculationHistory"></div>
+    </section>
+
+    <div id="calculationResults"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 - Calculateur de coût de revient</p>
+  </footer>
+
+  <script src="js/index.js"></script>
+</body>
+</html>
