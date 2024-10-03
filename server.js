@@ -13,6 +13,7 @@ const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cost_calcula
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
+  serverSelectionTimeoutMS: 30000,  // 30 secondes de délai d'attente
 })
   .then(() => console.log('MongoDB connecté'))
   .catch(err => console.log('Erreur de connexion MongoDB :', err));
