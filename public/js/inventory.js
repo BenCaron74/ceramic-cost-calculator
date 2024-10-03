@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Charger les matières premières existantes
   const loadMaterials = async () => {
       try {
-          const response = await fetch('/api/materials');
+        const response = await fetch(`${window.location.origin}/api/materials`);
           if (!response.ok) throw new Error('Erreur lors du chargement des matières');
           const materials = await response.json();
 
