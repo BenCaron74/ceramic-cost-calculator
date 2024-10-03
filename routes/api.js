@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const MaterialControllers = require('../controllers/MaterialControllers');  // Si vous avez déjà un contrôleur
+const MaterialControllers = require('../controllers/MaterialControllers');
 const CeramicCalculation = require('../models/CeramicCalculation');
 const Material = require('../models/Material');
 
