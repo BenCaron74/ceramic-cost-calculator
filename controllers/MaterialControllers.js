@@ -1,23 +1,23 @@
 const Material = require('../models/Material');
 
-// Ajouter un nouveau matériau
-exports.addMaterial = async (req, res) => {
-  const { name, costPerKg } = req.body;
+// Récupérer tous les matériaux
+exports.getMaterials = async (req, res) => {
   try {
-    const material = new Material({ name, costPerKg });
-    await material.save();
-    res.status(201).json({ message: 'Matériau ajouté avec succès', material });
+    const materials = await Material.find(); // Récupère tous les matériaux
+    res.json(materials);
   } catch (error) {
-    res.status(500).json({ message: 'Erreur serveur', error });
+    res.status(500).json({ message: error.message });
   }
 };
 
-// Récupérer la liste des matériaux
-exports.getMaterials = async (req, res) => {
+// Ajouter un matériau
+exports.addMaterial = async (req, res) => {
+  const { name, pricePer10Kg } = req.body;
   try {
-    const materials = await Material.find();
-    res.status(200).json(materials);
+    const newMaterial = new Material({ name, pricePer10Kg });
+    const savedMaterial = await newMaterial.save();
+    res.json(savedMaterial);
   } catch (error) {
-    res.status(500).json({ message: 'Erreur serveur', error });
+    res.status(500).json({ message: error.message });
   }
 };

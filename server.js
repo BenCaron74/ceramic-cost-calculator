@@ -1,10 +1,10 @@
+require('dotenv').config();  // Charge les variables d'environnement du fichier .env
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const apiRoutes = require('./routes/api'); // Importation du fichier de routes
-require('dotenv').config(); // Pour charger les variables d'environnement
 
 const app = express();
 

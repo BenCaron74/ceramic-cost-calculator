@@ -1,20 +1,8 @@
 const mongoose = require('mongoose');
 
-const MaterialSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  costPerKg: {
-    type: Number,
-    required: true,
-  },
-  quantity: {
-    type: Number,
-    required: true,
-  }
+const materialSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  pricePer10Kg: { type: Number, required: true }
 });
 
-const Material = mongoose.model('Material', MaterialSchema);
-
-module.exports = Material;
+module.exports = mongoose.model('Material', materialSchema);
