@@ -102,4 +102,5 @@ document.getElementById('calculationForm').addEventListener('submit', async func
 // Charger les matières premières et les calculs à l'ouverture
 document.addEventListener('DOMContentLoaded', () => {
     loadMaterials();
+
 });
