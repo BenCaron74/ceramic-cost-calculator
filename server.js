@@ -9,14 +9,14 @@ const apiRoutes = require('./routes/api'); // Importation du fichier de routes
 const app = express();
 
 // Connexion à MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+const uri = "mongodb+srv://caronben:<KoHKIcLxwjLoUEaF>@cluster0.yompb.mongodb.net/cost_calculator?retryWrites=true&w=majority";
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 30000  // 30 secondes de délai d'attente
 })
   .then(() => console.log('MongoDB connecté'))
   .catch(err => console.log('Erreur de connexion MongoDB :', err));
-
 
 
 // Middleware
