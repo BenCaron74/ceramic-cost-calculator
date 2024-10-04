@@ -8,7 +8,7 @@ const apiRoutes = require('./routes/api'); // Importation du fichier de routes
 
 const app = express();
 
-/// Connexion à MongoDB
+// Connexion à MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -16,6 +16,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 })
   .then(() => console.log('MongoDB connecté'))
   .catch(err => console.log('Erreur de connexion MongoDB :', err));
+
 
 
 // Middleware
